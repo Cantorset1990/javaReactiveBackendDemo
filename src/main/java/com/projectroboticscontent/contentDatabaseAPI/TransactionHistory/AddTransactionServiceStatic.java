@@ -62,7 +62,7 @@ public class AddTransactionServiceStatic {
 
         WebClient addBlockClient = WebClient.create();
 
-        final String url = Configuration.blockchainIPAddress + "/set";
+        final String url = Configuration.blockchainIPAddress + "/sol/set";
 
         return historyMongoOps.insert(info ,"HistoryCollection")
                 .flatMap(output->{
