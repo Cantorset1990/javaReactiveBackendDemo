@@ -61,7 +61,7 @@ public class SubmitFinanceRequestService {
 
         final String DATETIME = LocalDateTime.now().toString();
 
-        final String url = Configuration.blockchainIPAddress + "/set";
+        final String url = Configuration.blockchainIPAddress + "/sol/set";
 
         final FinanceRequest submission = new FinanceRequest( STATUS,  FINANCE_REQUEST_ID,  TOTAL_COST,
          SOLUTION_TITLE,  PAYMENT,
