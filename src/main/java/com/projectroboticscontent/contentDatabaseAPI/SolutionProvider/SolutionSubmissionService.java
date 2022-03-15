@@ -217,7 +217,7 @@ public class SolutionSubmissionService {
 
         final String DATETIME = LocalDateTime.now().toString();
 
-        final String url = Configuration.blockchainIPAddress + "/set";
+        final String url = Configuration.blockchainIPAddress + "/sol/set";
 
         final SolutionSubmission submission = new SolutionSubmission(SOLUTION_OWNER, SOLUTION_TITLE, JSON_SOLUTION_DATA,
         SOLUTION_ID,  FORM_ID, new long[]{}, token, USERTYPE,
