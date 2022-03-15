@@ -120,7 +120,7 @@ public class UserFormSubmissionService {
 
             final String DATETIME = LocalDateTime.now().toString();
 
-            final String url = Configuration.blockchainIPAddress + "/set";
+            final String url = Configuration.blockchainIPAddress + "/sol/set";
 
             WebClient addBlockClient = WebClient.create();
 
