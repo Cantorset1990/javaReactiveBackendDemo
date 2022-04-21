@@ -203,7 +203,9 @@ public class PurchaseService {
                                     })
 
                                     .flatMap(output->{
-                                        return sendCoinToSolutionProvider(token,USERTYPE,SOLUTION_ID);
+                                        return SendCoin2(token,USERTYPE,output.getSOLUTION_PROVIDER_WALLET_ID(),
+                                                Long.toString(output.getPRICE()));
+                                        //return sendCoinToSolutionProvider(token,USERTYPE,SOLUTION_ID);
                                     });
 
 
