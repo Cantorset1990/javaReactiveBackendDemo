@@ -129,7 +129,7 @@ public class PurchaseService {
 
     }
 
-    public Mono<long[]> addPurchase(long[] PURCHASE_LIST,  long PRIMARY_KEY)
+    public long[] addPurchase(long[] PURCHASE_LIST,  long PRIMARY_KEY)
     {
         long newarr[] = new long[PURCHASE_LIST.length + 1];
 
@@ -138,9 +138,33 @@ public class PurchaseService {
 
         newarr[PURCHASE_LIST.length] = PRIMARY_KEY;
 
-        return Mono.just(newarr);
+        return newarr;
     }
 
+    public Mono<SolutionMarketSubmission> updatePurchase(long[] PURCHASE_LIST, long SOLUTION_ID)
+    {
+        final Query query =
+
+                Query.query(
+                        new Criteria().andOperator(
+                                Criteria.where("SOLUTION_ID").is(SOLUTION_ID)
+
+                        ));
+
+        //query.fields().include("FORM_ID");
+        //query.fields().include("JSON_FORM_DATA");
+        //query.fields().include("FORM_TITLE");
+
+        Update update = new Update();
+        update.set("PURCHASE_LIST", PURCHASE_LIST);
+        //update.set("FORM_TITLE", FORM_TITLE);
+
+        return MongoOps.findAndModify(query,update, SolutionMarketSubmission.class,"SolutionProviderCollection");
+
+        // .switchIfEmpty(Error());
+
+
+    }
 
 
     public Mono<String> getAndAddPurchase(String token, String USERTYPE, long SOLUTION_ID)
@@ -156,16 +180,26 @@ public class PurchaseService {
 
                         ));
 
+        final Query queryProfile =
+                Query.query(
+                        new Criteria().andOperator(
+                                Criteria.where("PRIMARY_KEY").is(PRIMARY_KEY)
+
+                        ));
 
 
-        return registrationMongoOps.findOne(query, UserProfile.class,"RegistrationCollection")
+
+
+        return registrationMongoOps.findOne(queryProfile, UserProfile.class,"RegistrationCollection")
                         .flatMap(value->{
 
                             return MongoOps.findOne(query, SolutionMarketSubmission.class,"SolutionProviderCollection")
 
 
                                     .flatMap(output ->{
-                                        return addPurchase(output.getPURCHASE_LIST(), PRIMARY_KEY);
+                                        long [] purchase = addPurchase(output.getPURCHASE_LIST(), PRIMARY_KEY);
+                                        return updatePurchase(purchase,SOLUTION_ID);
+
                                     })
 
                                     .flatMap(output->{
