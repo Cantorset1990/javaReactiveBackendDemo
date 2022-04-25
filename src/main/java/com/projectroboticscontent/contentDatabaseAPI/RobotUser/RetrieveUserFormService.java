@@ -65,9 +65,11 @@ public class RetrieveUserFormService {
                             ));
 
 
-            return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection");
-                    //.switchIfEmpty(Error());
-
+            return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection")
+                    .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                            "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+            "", "", "",0, 0, "", null, null,
+            null, 404)));
 
 
 
@@ -88,7 +90,11 @@ public class RetrieveUserFormService {
 
 
 
-        return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection");
+        return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection")
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
 
 
 
@@ -108,8 +114,12 @@ public class RetrieveUserFormService {
 
 
 
-        return MongoOps.findOne(query, FormDataRetrieval.class,"UserRequestCollection");
-                //.switchIfEmpty(Error());
+        return MongoOps.findOne(query, FormDataRetrieval.class,"UserRequestCollection")
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
+        //.switchIfEmpty(Error());
 
 
 
@@ -140,8 +150,11 @@ public class RetrieveUserFormService {
 
 
 
-
-        return MongoOps.findAll(FormDataRetrieval.class,"UserRequestCollection");
+        return MongoOps.findAll(FormDataRetrieval.class,"UserRequestCollection")
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
                 //.switchIfEmpty(Error());
 
 
@@ -163,8 +176,12 @@ public class RetrieveUserFormService {
         return checkProfile(token, USERTYPE)
                 .flatMapMany(output->{
 
-                    return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection");
-                            //.switchIfEmpty(Error());
+                    return MongoOps.find(query, FormDataRetrieval.class,"UserRequestCollection")
+                            .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                                    "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                                    "", "", "",0, 0, "", null, null,
+                                    null, 404)));
+                    //.switchIfEmpty(Error());
 
                 });
 
@@ -182,8 +199,12 @@ public class RetrieveUserFormService {
                                 Criteria.where("FORM_ID").is(FORM_ID)
                         ));
 
-        return MongoOps.findOne(query, FormDataRetrieval.class,"UserRequestCollection");
-                //.switchIfEmpty(Error());
+        return MongoOps.findOne(query, FormDataRetrieval.class,"UserRequestCollection")
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
+        //.switchIfEmpty(Error());
     }
 
     public  Flux<FormDataRetrieval> viewAllUserFormsByProvider(String token, String USERTYPE)
@@ -194,7 +215,11 @@ public class RetrieveUserFormService {
         return checkProfile(token, USERTYPE)
                 .flatMapMany(output->{
                    return viewAllUserForms();
-                });
+                })
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
 
 
 
@@ -209,7 +234,11 @@ public class RetrieveUserFormService {
         return checkProfile(token, USERTYPE)
                 .flatMap(output->{
                     return viewSingleForm(FORM_ID);
-                });
+                })
+                .switchIfEmpty(Mono.just(new FormDataRetrieval(
+                        "Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", "",0, 0, "", null, null,
+                        null, 404)));
 
 
 

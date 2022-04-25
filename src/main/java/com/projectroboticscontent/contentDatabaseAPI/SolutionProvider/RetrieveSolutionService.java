@@ -82,7 +82,10 @@ public class RetrieveSolutionService {
 
 
 
-        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                       HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
 
 
 
@@ -102,7 +105,10 @@ public class RetrieveSolutionService {
 
 
 
-        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
 
 
 
@@ -123,7 +129,10 @@ public class RetrieveSolutionService {
         //  query.fields().include("JSON_FORM_DATA");
         //  query.fields().include("FORM_TITLE");
 
-        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
                // .switchIfEmpty(Error());
 
 
@@ -145,7 +154,10 @@ public class RetrieveSolutionService {
         //  query.fields().include("JSON_FORM_DATA");
         //  query.fields().include("FORM_TITLE");
 
-        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
                 //.switchIfEmpty(Error());
 
 
@@ -157,7 +169,10 @@ public class RetrieveSolutionService {
         return checkProfile(token, USERTYPE)
                 .flatMap(output ->{
                     return getOneSolutionForOneForm( FORM_ID,  SOLUTION_ID);
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
 
 
     }
@@ -168,7 +183,10 @@ public class RetrieveSolutionService {
         return checkProfile(token, USERTYPE)
                 .flatMapMany(output ->{
                     return getSolutionsForOneForm(FORM_ID);
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
 
 
     }
@@ -188,7 +206,10 @@ public class RetrieveSolutionService {
         //  query.fields().include("JSON_FORM_DATA");
         //  query.fields().include("FORM_TITLE");
 
-        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
                // .switchIfEmpty(Error());
 
 
@@ -202,7 +223,10 @@ public class RetrieveSolutionService {
         return checkProfile(token, USERTYPE)
                 .flatMap(output ->{
                     return getOneSolution(SOLUTION_ID);
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
 
 
 
@@ -225,7 +249,10 @@ public class RetrieveSolutionService {
         //  query.fields().include("JSON_FORM_DATA");
         //  query.fields().include("FORM_TITLE");
 
-        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.find(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
                 //.switchIfEmpty(Error());
 
 
@@ -247,7 +274,10 @@ public class RetrieveSolutionService {
         //  query.fields().include("JSON_FORM_DATA");
         //  query.fields().include("FORM_TITLE");
 
-        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection");
+        return solutionMongoOps.findOne(query, SolutionDataRetrieval.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionDataRetrieval("Error, check token and json input",
+                        HttpStatus.INTERNAL_SERVER_ERROR, "", "", 0, 0, 0,
+                        "", null, "", null, 404)));
                 //.switchIfEmpty(Error());
 
 

@@ -1,6 +1,7 @@
 package com.projectroboticscontent.contentDatabaseAPI.SolutionProvider;
 
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.http.HttpStatus;
 
 public class SolutionDataRetrieval {
 
@@ -36,13 +37,21 @@ public class SolutionDataRetrieval {
     @Field
     private long STATUS;
 
-    public SolutionDataRetrieval(String SOLUTION_OWNER, String SOLUTION_TITLE,
+    @Field
+    String SERVER_STATUS_MESSAGE;
+
+    @Field
+    HttpStatus SERVER_STATUS;
+
+    public SolutionDataRetrieval( String SERVER_STATUS_MESSAGE, HttpStatus SERVER_STATUS, String SOLUTION_OWNER, String SOLUTION_TITLE,
                              long SOLUTION_ID, long FORM_ID,
                              long SOLUTION_PROVIDER_PRIMARY_KEY, String USERTYPE,
                                  long[] COMMENTS, String JSON_SOLUTION_DATA,
                                  String DATETIME, long STATUS) {
 
 
+        this.SERVER_STATUS = SERVER_STATUS;
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
         this.SOLUTION_OWNER = SOLUTION_OWNER;
         this.SOLUTION_TITLE = SOLUTION_TITLE;
         this.SOLUTION_ID = SOLUTION_ID;
@@ -135,5 +144,21 @@ public class SolutionDataRetrieval {
 
     public void setSOLUTION_PROVIDER_PRIMARY_KEY(long SOLUTION_PROVIDER_PRIMARY_KEY) {
         this.SOLUTION_PROVIDER_PRIMARY_KEY = SOLUTION_PROVIDER_PRIMARY_KEY;
+    }
+
+    public String getSERVER_STATUS_MESSAGE() {
+        return SERVER_STATUS_MESSAGE;
+    }
+
+    public void setSERVER_STATUS_MESSAGE(String SERVER_STATUS_MESSAGE) {
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+    }
+
+    public HttpStatus getSERVER_STATUS() {
+        return SERVER_STATUS;
+    }
+
+    public void setSERVER_STATUS(HttpStatus SERVER_STATUS) {
+        this.SERVER_STATUS = SERVER_STATUS;
     }
 }

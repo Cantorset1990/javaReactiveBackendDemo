@@ -9,6 +9,7 @@ import com.projectroboticscontent.contentDatabaseAPI.Utility.JwtTokenUtil;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -63,7 +64,8 @@ public class SubmitFinanceRequestService {
 
         final String url = Configuration.blockchainIPAddress + "/sol/set";
 
-        final FinanceRequest submission = new FinanceRequest( STATUS,  FINANCE_REQUEST_ID,  TOTAL_COST,
+        final FinanceRequest submission = new FinanceRequest("Submission Success", HttpStatus.OK,
+                STATUS,  FINANCE_REQUEST_ID,  TOTAL_COST,
          SOLUTION_TITLE,  PAYMENT,
          USAGE_TIME,  SOLUTION_PROVIDER_PRIMARY_KEY,
          INVESTOR_PRIMARY_KEY,  DATETIME, SOLUTION_PROVIDER_WALLET_ID,  INVESTOR_WALLET_ID, HARDWARE_ID,

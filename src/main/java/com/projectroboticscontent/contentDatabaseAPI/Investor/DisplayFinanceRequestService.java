@@ -7,6 +7,7 @@ import com.projectroboticscontent.contentDatabaseAPI.Utility.JwtTokenUtil;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -68,7 +69,10 @@ public class DisplayFinanceRequestService {
                 output -> {
                     return investorMongoOps.find(query, FinanceRequest.class, "FinanceRequestCollection");
                 }
-        );
+        ).switchIfEmpty(Mono.just(new FinanceRequest("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                404, 0, 0,"",0,0, 0,
+                0, null, "", "", "", 0,
+                "", 0, "", "")));
 
 
 
@@ -83,7 +87,10 @@ public class DisplayFinanceRequestService {
                 output -> {
                     return investorMongoOps.findAll( FinanceRequest.class, "FinanceRequestCollection");
                 }
-        );
+        ).switchIfEmpty(Mono.just(new FinanceRequest("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        404, 0, 0,"",0,0, 0,
+                        0, null, "", "", "", 0,
+                        "", 0, "", "")));
 
 
 

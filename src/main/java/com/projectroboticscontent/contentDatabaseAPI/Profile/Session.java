@@ -62,6 +62,8 @@ public class Session {
         this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
     }
 
+
+
     @Override
     public String toString() {
         return "Session{" +

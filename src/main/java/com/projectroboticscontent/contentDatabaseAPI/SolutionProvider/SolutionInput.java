@@ -30,4 +30,6 @@ public class SolutionInput extends SolutionSubmission {
     public void setFILE_LIST(PrivateFileStorage[] FILE_LIST) {
         this.FILE_LIST = FILE_LIST;
     }
+
+
 }

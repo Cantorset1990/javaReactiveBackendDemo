@@ -64,7 +64,10 @@ public class SolutionMarketViewService {
                         ));
 
 
-        return MongoOps.find(query, SolutionMarketSubmission.class,"SolutionProviderCollection");
+        return MongoOps.find(query, SolutionMarketSubmission.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
         //.switchIfEmpty(Error());
 
 
@@ -87,7 +90,10 @@ public class SolutionMarketViewService {
 
 
 
-        return MongoOps.find(query, SolutionMarketSubmission.class,"SolutionProviderCollection");
+        return MongoOps.find(query, SolutionMarketSubmission.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
 
 
 
@@ -108,7 +114,10 @@ public class SolutionMarketViewService {
 
 
 
-        return MongoOps.findOne(query, SolutionMarketSubmission.class,"SolutionProviderCollection");
+        return MongoOps.findOne(query, SolutionMarketSubmission.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
         //.switchIfEmpty(Error());
 
 
@@ -140,7 +149,10 @@ public class SolutionMarketViewService {
     {
 
 
-        return MongoOps.findAll(SolutionMarketSubmission.class,"SolutionProviderCollection");
+        return MongoOps.findAll(SolutionMarketSubmission.class,"SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
 
 
     }
@@ -165,7 +177,10 @@ public class SolutionMarketViewService {
                             "SolutionProviderCollection");
                     //.switchIfEmpty(Error());
 
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
 
 
 
@@ -182,7 +197,10 @@ public class SolutionMarketViewService {
                         ));
 
         return MongoOps.findOne(query,SolutionMarketSubmission.class,
-                "SolutionProviderCollection");
+                "SolutionProviderCollection")
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
         //.switchIfEmpty(Error());
     }
 
@@ -194,7 +212,10 @@ public class SolutionMarketViewService {
         return checkProfile(token, USERTYPE)
                 .flatMapMany(output->{
                     return viewAllMarketSolutions();
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
 
 
 
@@ -209,7 +230,10 @@ public class SolutionMarketViewService {
         return checkProfile(token, USERTYPE)
                 .flatMap(output->{
                     return viewSingleMarketSolution(SOLUTION_ID);
-                });
+                })
+                .switchIfEmpty(Mono.just(new SolutionMarketSubmission("Error, check token and json input", HttpStatus.INTERNAL_SERVER_ERROR,
+                        "", "", 404, 0, 0,"",
+                        null, "", "", "", 0)));
 
 
 

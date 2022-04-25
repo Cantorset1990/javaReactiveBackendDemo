@@ -126,7 +126,7 @@ public class UserFormSubmissionService {
 
             WebClient addBlockClient = WebClient.create();
 
-            final FormSubmission submission = new FormSubmission(token, USERTYPE,
+            final FormSubmission submission = new FormSubmission("Submission Success", HttpStatus.OK, token, USERTYPE,
                     FORM_TITLE, JSON_FORM_DATA, PRIMARY_KEY, FORM_ID, new long[]{}, new long[]{}, FORM_OWNER, new long[]{},
                     DATETIME, USER_WALLET_ID, 0);
 
@@ -154,7 +154,7 @@ public class UserFormSubmissionService {
 
         final String DATETIME = LocalDateTime.now().toString();
 
-        final FormSubmission submission = new FormSubmission(token, USERTYPE,
+        final FormSubmission submission = new FormSubmission("Submission Success", HttpStatus.OK,token, USERTYPE,
                 FORM_TITLE, JSON_FORM_DATA, PRIMARY_KEY, FORM_ID,
                 new long[]{}, new long[]{}, FORM_OWNER, new long[]{}, DATETIME,USER_WALLET_ID,0);
 

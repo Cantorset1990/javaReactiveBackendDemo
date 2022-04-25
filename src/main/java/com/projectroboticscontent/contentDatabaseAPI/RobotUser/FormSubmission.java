@@ -2,6 +2,7 @@ package com.projectroboticscontent.contentDatabaseAPI.RobotUser;
 
 import com.google.common.hash.Hashing;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.http.HttpStatus;
 
 import java.nio.charset.StandardCharsets;
 
@@ -29,13 +30,21 @@ public class FormSubmission extends FormInfo {
     @Field
     private long[] SOLUTION_LIST;
 
+    @Field
+    String SERVER_STATUS_MESSAGE;
 
-    public FormSubmission(String token, String USERTYPE, String FORM_TITLE, String JSON_FORM_DATA,
+    @Field
+    HttpStatus SERVER_STATUS;
+
+
+    public FormSubmission( String SERVER_STATUS_MESSAGE, HttpStatus SERVER_STATUS, String token, String USERTYPE, String FORM_TITLE, String JSON_FORM_DATA,
                           long USER_PRIMARY_KEY, long FORM_ID, long[] COMMENTS,
                           long[] SOLUTION_LIST, String FORM_OWNER, long[] FILES, String DATETIME,
                           String USER_WALLET_ID, long STATUS) {
         super(FORM_TITLE, FORM_ID, FORM_OWNER, USER_PRIMARY_KEY, DATETIME, USER_WALLET_ID, STATUS);
 
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+        this.SERVER_STATUS = SERVER_STATUS;
         this.token = token;
         this.USERTYPE = USERTYPE;
         this.COMMENTS = COMMENTS;
@@ -109,5 +118,21 @@ public class FormSubmission extends FormInfo {
 
     public void setHASH(String HASH) {
         this.HASH = HASH;
+    }
+
+    public String getSERVER_STATUS_MESSAGE() {
+        return SERVER_STATUS_MESSAGE;
+    }
+
+    public void setSERVER_STATUS_MESSAGE(String SERVER_STATUS_MESSAGE) {
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+    }
+
+    public HttpStatus getSERVER_STATUS() {
+        return SERVER_STATUS;
+    }
+
+    public void setSERVER_STATUS(HttpStatus SERVER_STATUS) {
+        this.SERVER_STATUS = SERVER_STATUS;
     }
 }

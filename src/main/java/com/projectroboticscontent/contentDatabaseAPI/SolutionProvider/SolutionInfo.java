@@ -178,4 +178,6 @@ public class SolutionInfo {
     public void setJSON_SOLUTION_DATA(String JSON_SOLUTION_DATA) {
         this.JSON_SOLUTION_DATA = JSON_SOLUTION_DATA;
     }
+
+
 }

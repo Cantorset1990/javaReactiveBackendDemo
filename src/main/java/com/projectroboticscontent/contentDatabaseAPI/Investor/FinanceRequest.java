@@ -2,12 +2,17 @@ package com.projectroboticscontent.contentDatabaseAPI.Investor;
 
 import com.google.common.hash.Hashing;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.http.HttpStatus;
 
 import java.nio.charset.StandardCharsets;
 
 public class FinanceRequest {
 
+    @Field
+    String SERVER_STATUS_MESSAGE;
 
+    @Field
+    HttpStatus SERVER_STATUS;
     @Field
     private long STATUS;
 
@@ -62,7 +67,8 @@ public class FinanceRequest {
     @Field
     private String HASH;
 
-    public FinanceRequest(long STATUS, long FINANCE_REQUEST_ID, long TOTAL_COST,
+    public FinanceRequest( String SERVER_STATUS_MESSAGE, HttpStatus SERVER_STATUS,
+                           long STATUS, long FINANCE_REQUEST_ID, long TOTAL_COST,
                           String SOLUTION_TITLE, long PAYMENT,
                           long USAGE_TIME, long SOLUTION_PROVIDER_PRIMARY_KEY,
                           long INVESTOR_PRIMARY_KEY, String DATETIME,
@@ -71,6 +77,8 @@ public class FinanceRequest {
                           String USER_WALLET_ID, long SOLUTION_ID,
                           String SOLUTION_OWNER, String FINANCE_REQUEST_OWNER) {
 
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+        this.SERVER_STATUS = SERVER_STATUS;
         this.STATUS = STATUS;
         this.FINANCE_REQUEST_ID = FINANCE_REQUEST_ID;
         this.TOTAL_COST = TOTAL_COST;
@@ -244,5 +252,21 @@ public class FinanceRequest {
 
     public void setHASH(String HASH) {
         this.HASH = HASH;
+    }
+
+    public String getSERVER_STATUS_MESSAGE() {
+        return SERVER_STATUS_MESSAGE;
+    }
+
+    public void setSERVER_STATUS_MESSAGE(String SERVER_STATUS_MESSAGE) {
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+    }
+
+    public HttpStatus getSERVER_STATUS() {
+        return SERVER_STATUS;
+    }
+
+    public void setSERVER_STATUS(HttpStatus SERVER_STATUS) {
+        this.SERVER_STATUS = SERVER_STATUS;
     }
 }

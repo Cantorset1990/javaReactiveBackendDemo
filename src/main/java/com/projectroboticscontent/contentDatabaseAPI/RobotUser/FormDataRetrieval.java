@@ -1,6 +1,7 @@
 package com.projectroboticscontent.contentDatabaseAPI.RobotUser;
 
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.http.HttpStatus;
 
 public class FormDataRetrieval {
 
@@ -36,11 +37,21 @@ public class FormDataRetrieval {
     @Field
     private long STATUS;
 
-    public FormDataRetrieval(String FORM_OWNER, String USERTYPE, String FORM_TITLE,
+    @Field
+    String SERVER_STATUS_MESSAGE;
+
+    @Field
+    HttpStatus SERVER_STATUS;
+
+
+
+    public FormDataRetrieval(String SERVER_STATUS_MESSAGE, HttpStatus SERVER_STATUS, String FORM_OWNER, String USERTYPE, String FORM_TITLE,
                          long FORM_ID, long USER_PRIMARY_KEY, String JSON_FORM_DATA, long[] COMMENTS,
                          long[] SOLUTION_LIST, String DATETIME, long STATUS
     )
     {
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+        this.SERVER_STATUS = SERVER_STATUS;
         this.FORM_OWNER = FORM_OWNER;
         this.USERTYPE = USERTYPE;
         this.FORM_TITLE = FORM_TITLE;
@@ -133,5 +144,21 @@ public class FormDataRetrieval {
 
     public void setSTATUS(long STATUS) {
         this.STATUS = STATUS;
+    }
+
+    public String getSERVER_STATUS_MESSAGE() {
+        return SERVER_STATUS_MESSAGE;
+    }
+
+    public void setSERVER_STATUS_MESSAGE(String SERVER_STATUS_MESSAGE) {
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+    }
+
+    public HttpStatus getSERVER_STATUS() {
+        return SERVER_STATUS;
+    }
+
+    public void setSERVER_STATUS(HttpStatus SERVER_STATUS) {
+        this.SERVER_STATUS = SERVER_STATUS;
     }
 }

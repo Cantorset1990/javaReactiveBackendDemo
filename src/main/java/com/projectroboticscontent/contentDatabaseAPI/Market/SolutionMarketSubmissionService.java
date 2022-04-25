@@ -133,7 +133,7 @@ public class SolutionMarketSubmissionService {
 
         WebClient addBlockClient = WebClient.create();
 
-        final SolutionMarketSubmission submission = new SolutionMarketSubmission( SOLUTION_OWNER, SOLUTION_TITLE,
+        final SolutionMarketSubmission submission = new SolutionMarketSubmission("Submission Success", HttpStatus.OK, SOLUTION_OWNER, SOLUTION_TITLE,
          STATUS, SOLUTION_ID,
          SOLUTION_PROVIDER_PRIMARY_KEY,
          SOLUTION_PROVIDER_WALLET_ID,  DATETIME,
@@ -167,7 +167,8 @@ public class SolutionMarketSubmissionService {
 
         final String DATETIME = LocalDateTime.now().toString();
 
-        final SolutionMarketSubmission submission = new SolutionMarketSubmission( SOLUTION_OWNER, SOLUTION_TITLE,
+        final SolutionMarketSubmission submission = new SolutionMarketSubmission("Submission Success", HttpStatus.OK,
+                SOLUTION_OWNER, SOLUTION_TITLE,
                 STATUS, SOLUTION_ID,
                 SOLUTION_PROVIDER_PRIMARY_KEY,
                 SOLUTION_PROVIDER_WALLET_ID,  DATETIME,
