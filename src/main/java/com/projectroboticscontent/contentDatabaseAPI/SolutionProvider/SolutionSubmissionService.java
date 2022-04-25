@@ -213,7 +213,8 @@ public class SolutionSubmissionService {
 
         final String url = Configuration.blockchainIPAddress + "/sol/set";
 
-        final SolutionSubmission submission = new SolutionSubmission(SOLUTION_OWNER, SOLUTION_TITLE, JSON_SOLUTION_DATA,
+        final SolutionSubmission submission = new SolutionSubmission("Submission Success", HttpStatus.OK,
+                SOLUTION_OWNER, SOLUTION_TITLE, JSON_SOLUTION_DATA,
         SOLUTION_ID,  FORM_ID, new long[]{}, token, USERTYPE,
                 PRIMARY_KEY, DATETIME, STATUS,
                 SOLUTION_PROVIDER_WALLET_ID, USER_PRIMARY_KEY, USER_WALLET_ID);
@@ -250,7 +251,8 @@ public class SolutionSubmissionService {
 
         final String DATETIME = LocalDateTime.now().toString();
 
-        final SolutionSubmission submission = new SolutionSubmission(SOLUTION_OWNER, SOLUTION_TITLE, JSON_SOLUTION_DATA,
+        final SolutionSubmission submission = new SolutionSubmission("Submission Success", HttpStatus.OK,
+                SOLUTION_OWNER, SOLUTION_TITLE, JSON_SOLUTION_DATA,
                 SOLUTION_ID,  FORM_ID, new long[]{}, token, USERTYPE,
                 PRIMARY_KEY, DATETIME, STATUS,  SOLUTION_PROVIDER_WALLET_ID, USER_PRIMARY_KEY, USER_WALLET_ID);
 

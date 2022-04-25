@@ -1,8 +1,15 @@
 package com.projectroboticscontent.contentDatabaseAPI.SolutionProvider;
 
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.http.HttpStatus;
 
 public class SolutionSubmission extends SolutionInfo {
+
+    @Field
+    String SERVER_STATUS_MESSAGE;
+
+    @Field
+    HttpStatus SERVER_STATUS;
 
     @Field
     private String token;
@@ -17,13 +24,15 @@ public class SolutionSubmission extends SolutionInfo {
 
 
 
-    public SolutionSubmission(String SOLUTION_OWNER, String SOLUTION_TITLE, String JSON_SOLUTION_DATA, long SOLUTION_ID, long FORM_ID, long[] COMMENTS,
+    public SolutionSubmission( String SERVER_STATUS_MESSAGE, HttpStatus SERVER_STATUS, String SOLUTION_OWNER, String SOLUTION_TITLE, String JSON_SOLUTION_DATA, long SOLUTION_ID, long FORM_ID, long[] COMMENTS,
                               String token, String USERTYPE, long SOLUTION_PROVIDER_PRIMARY_KEY, String DATETIME,
                               long STATUS, String SOLUTION_PROVIDER_WALLET_ID, long USER_PRIMARY_KEY, String USER_WALLET_ID) {
 
         super(SOLUTION_OWNER, SOLUTION_TITLE,  SOLUTION_ID, FORM_ID, SOLUTION_PROVIDER_PRIMARY_KEY,
                 DATETIME, STATUS, SOLUTION_PROVIDER_WALLET_ID, USER_PRIMARY_KEY, USER_WALLET_ID, JSON_SOLUTION_DATA);
 
+        this.SERVER_STATUS_MESSAGE = SERVER_STATUS_MESSAGE;
+        this.SERVER_STATUS = SERVER_STATUS;
         this.token = token;
         this.USERTYPE = USERTYPE;
         this.COMMENTS = COMMENTS;

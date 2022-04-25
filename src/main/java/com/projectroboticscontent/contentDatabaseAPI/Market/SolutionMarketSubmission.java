@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 
 public class SolutionMarketSubmission {
 
+
+
     @Field
     private String SOLUTION_OWNER;
 
